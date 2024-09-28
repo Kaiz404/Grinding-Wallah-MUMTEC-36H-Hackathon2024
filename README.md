@@ -1,7 +1,7 @@
 # Western Digital x MUMTEC-36H-Hackathon 2024-
-# [Team Name] – MUMTEC Hackathon 2024 Submission
+# Grinding Wallah – MUMTEC Hackathon 2024 Submission
 
-## Project Title: [Insert Project Name]
+## Project Title: OptiFirm AI
 
 ### Table of Contents
 1. [Project Overview](#project-overview)
@@ -16,41 +16,33 @@
 ---
 
 ### Project Overview
-[Provide a brief description of your project. Include the problem you are solving, your approach, and the impact of your solution.]
+Our project addresses the challenge of time-consuming and resource-intensive firmware testing by automating the generation and optimization of test cases using AI. Traditional methods of manually creating test cases often lead to delays and incomplete coverage of edge scenarios, which can result in unreliable firmware. Our approach leverages AI to automatically generate comprehensive test cases, allows user input for approval, and optimizes them for performance, power efficiency, and reliability. The impact of this solution is faster time-to-market, improved firmware quality, reduced development costs, and enhanced device reliability, providing significant advantages in competitive industries.
 
-- **Problem Statement**: [Briefly describe the problem or challenge your project addresses.]
-- **Proposed Solution**: [Describe your AI-powered solution, highlighting its key features and benefits.]
+- **Problem Statement**: Firmware testing is a critical but time-consuming process that often requires extensive manual effort, leading to delays, incomplete test coverage, and unreliable firmware performance. Current methods struggle to efficiently address diverse hardware interactions and edge cases, resulting in higher costs and increased risks of post-release failures.
+
+- **Proposed Solution**: Our AI-powered solution automates the generation and optimization of firmware test cases, ensuring comprehensive coverage of diverse scenarios. Key features include automatic test case generation, user approval for feedback and refinement, and AI-driven optimization to enhance performance, power efficiency, and reliability. This approach reduces manual effort, accelerates development timelines, improves firmware quality, and provides scalable benefits across multiple hardware platforms.
 
 ---
 
 ### Technologies Used
-[List all the technologies, programming languages, frameworks, libraries, and tools used in the project. Include any external APIs or datasets.]
 
 - Python 3.7
-- PyTorch
-- TensorFlow
-- Figma
-- React
+- OpenAI API
+- OpenAI Wrapper
 
 ---
 
-### Installation and Setup
-[Describe how to use install and setup your project. ]
-
---- 
 
 ### Usage
-[Describe how to use your application. Include example commands, expected inputs, and outputs.]
-
---- 
+Simple and straight forward commands are provided for user interaction via CLI.
 
 ### Features
-[Highlight the key features of your project.]
-
---- 
+Minimize Error
+Reduce run-time
+Reduce memory usage
+Optimize performance
+Optimize power efficiency
+Optimize reliability
 
 ### Architecture
-[Provide an explanation of your system architecture.]
-
---- 
-
+The AI algorithm automatically generates firmware-specific test cases based on the provided code and specifications, allowing the user to review and either approve or modify the test cases. Upon approval, the algorithm optimizes the test cases, and if any fail, it re-runs optimizations until success is achieved, providing performance metrics at the end.
