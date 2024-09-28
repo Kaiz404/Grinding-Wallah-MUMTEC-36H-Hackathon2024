@@ -18,9 +18,17 @@ const FileUploader = ({ imageUrl, onFieldChange, setFiles, uploadToIpfs }: FileU
   const [fileName, setFileName] = useState<string | null>(null)
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    setFiles(acceptedFiles)
-    onFieldChange(convertFileToUrl(acceptedFiles[0]))
-    setFileName(acceptedFiles[0].name)
+    console.log("Accepted files:", acceptedFiles); // Log accepted files
+    setFiles(acceptedFiles);
+
+    if (acceptedFiles.length > 0) {
+      const file = acceptedFiles[0];
+      console.log("File type:", file.type); // Log file type
+      onFieldChange(convertFileToUrl(file));
+      setFileName(file.name);
+    } else {
+      console.error("No files accepted");
+    }
   }, [])
 
   const { getRootProps, getInputProps } = useDropzone({
