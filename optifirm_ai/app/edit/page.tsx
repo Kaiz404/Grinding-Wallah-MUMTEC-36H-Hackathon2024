@@ -7,7 +7,7 @@ import { uploadFile } from "@/utils/ipfs";
 import FileUploader from "@/components/FileUploader";
 import PythonUploader from "@/components/PythonUploader";
 import Link from "next/link";
-import { getFileAsString } from "@/utils/getFileAsString.js";
+// import { getFileAsString } from "@/utils/getFileAsString.js";
 
 export default function Home() {
 
@@ -30,7 +30,7 @@ export default function Home() {
 
   useEffect(() => {
     console.log("Files:", files);
-    getFileAsString(files[0]);
+    // getFileAsString(files[0]);
   }, [files])
 
   const uploadToIpfs = async (file: any) => {
