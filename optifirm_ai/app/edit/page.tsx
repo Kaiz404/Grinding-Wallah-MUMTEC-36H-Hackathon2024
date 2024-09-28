@@ -6,6 +6,7 @@ import { useState } from "react";
 import { uploadFile } from "@/utils/ipfs";
 import FileUploader from "@/components/FileUploader";
 import PythonUploader from "@/components/PythonUploader";
+import Link from "next/link";
 
 export default function Home() {
 
@@ -38,8 +39,9 @@ export default function Home() {
 
 
   return (
-    <div className="h-full w-full items-center justify-center p-12 gap-16 flex">
+    <div className="h-full w-full items-center justify-center p-12 gap-16 flex-col">
 
+    <div className="flex w-full items-center justify-center gap-16 my-24">
       <div>
         <FileUploader
           imageUrl = {formData.imageUrl}
@@ -57,6 +59,23 @@ export default function Home() {
           onFieldChange={(url: string) => setPyData(prevState =>({ ...prevState, imageUrl: url}))}
           />
       </div>
+    </div>
+
+    <div>
+      {formData.imageUrl !== "" && pyData.imageUrl !== "" ? (
+        <Link className="w-full items-center justify-center flex" href="/testcases">
+          <button className="bg-blue-950 p-4 text-white rounded-lg">
+            Generate Test Cases
+          </button>
+        </Link>
+      ) : (
+        <div className="w-full items-center justify-center flex">
+          <button className="bg-gray-500 p-4 text-white rounded-lg pointer-events-none">
+            Generate Test Cases
+          </button>
+        </div>
+      )}
+    </div>
 
     </div>
   );
