@@ -45,6 +45,20 @@ export default function Home() {
             {code.join("\n")}
             </SyntaxHighlighter>
         </div>
+
+        <div className='fixed bottom-8 right-12 w-fit flex-col items-end justify-end flex gap-4'>
+          <button 
+          className='rounded-3xl py-4 text-2xl px-7 bg-red-500 text-white items-center flex justify-center'
+          >
+            Reject
+          </button>
+          <button 
+          className='rounded-3xl py-4 px-4 text-2xl bg-green-500 text-white items-center flex justify-center'
+          >
+            Approve
+          </button>
+        </div>
+
       </div>
 
     </div>
