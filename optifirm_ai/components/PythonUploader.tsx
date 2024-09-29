@@ -18,6 +18,7 @@ const PythonUploader = ({ fileName, onFieldChange, setFiles, uploadToIpfs }: Fil
   const [acceptedFileName, setAcceptedFileName] = useState<string | null>(null);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
+    console.log("Accepted files:", acceptedFiles); // Log accepted files
     setFiles(acceptedFiles);
     onFieldChange(acceptedFiles[0].name);
     setAcceptedFileName(acceptedFiles[0].name);

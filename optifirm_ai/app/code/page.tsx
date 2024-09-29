@@ -2,6 +2,8 @@
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { darcula } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import { useState, useEffect } from 'react';
+import { testCases, specSheet, unoptimizedFileContent } from '@/gpt/src/mock_data';
+import generateOptimizedCode from '@/gpt/generateOptimizedCode';
 
 export default function Home() {
 
@@ -10,24 +12,19 @@ export default function Home() {
   const [currentText, setCurrentText] = useState("");
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  const delay = 100
   
   useEffect(() => {
-    if (currentIndex < code.length) {
-      const timeout = setTimeout(() => {
-        setCurrentText(prevText => prevText + code[currentIndex] + "\n");
-        setCurrentIndex(prevIndex => prevIndex + 1);
-      }, delay);
-  
-      return () => clearTimeout(timeout);
-    }
-  }, [currentIndex, delay, code]);
+    const fetchTestCases = async () => {
+      await generateOptimizedCode(setCurrentText);
+    };
+    fetchTestCases();
+  }, []);
 
 
   return (
     <div className="h-full w-full flex py-8 items-center justify-center gap-32">
 
-      <div className="flex-col flex w-1/3 h-full border border-slate-500 rounded-lg items-center">
+      <div className="flex-col flex w-2/5 h-full border border-slate-500 rounded-lg items-center">
         <p className="text-lg font-semibold text-white">Old Code</p>
         <div className="flex w-full h-full overflow-auto">
             <SyntaxHighlighter 
@@ -38,15 +35,15 @@ export default function Home() {
             maxHeight: "100%", 
             overflow: "auto", 
             whiteSpace: "pre-wrap",
-            fontSize: "1.2em"
+            fontSize: "1em"
             }}
             >
-            {code.join("\n")}
+            {unoptimizedFileContent}
             </SyntaxHighlighter>
         </div>
       </div>
 
-      <div className="flex-col flex w-1/3 h-full border border-slate-500 rounded-lg items-center">
+      <div className="flex-col flex w-2/5 h-full border border-slate-500 rounded-lg items-center">
         <p className="text-lg font-semibold text-white">New Code</p>
         <div className="flex w-full h-full overflow-auto">
         <SyntaxHighlighter 
@@ -57,7 +54,7 @@ export default function Home() {
             maxHeight: "100%", 
             overflow: "auto", 
             whiteSpace: "pre-wrap",
-            fontSize: "1.2em"
+            fontSize: "1em"
             }}
             >
             {currentText}

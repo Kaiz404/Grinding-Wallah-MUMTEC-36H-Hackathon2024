@@ -2,11 +2,12 @@
 
 import NavBar from "@/components/Navbar";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { uploadFile } from "@/utils/ipfs";
 import FileUploader from "@/components/FileUploader";
 import PythonUploader from "@/components/PythonUploader";
 import Link from "next/link";
+// import { getFileAsString } from "@/utils/getFileAsString.js";
 
 export default function Home() {
 
@@ -27,6 +28,11 @@ export default function Home() {
     description: "",
   })
 
+  useEffect(() => {
+    console.log("Files:", files);
+    // getFileAsString(files[0]);
+  }, [files])
+
   const uploadToIpfs = async (file: any) => {
     console.log("Uploading file to ipfs");
     console.log(file);
@@ -37,6 +43,12 @@ export default function Home() {
     setIsUploading(false);
   }
 
+  const downloadFile = async (file: any) => {
+    console.log("Downloading file from uploaders");
+    console.log(file);
+    setIsUploading(true);
+    setIsUploading(false);
+  }
 
   return (
     <div className="h-full w-full items-center justify-center p-12 gap-16 flex-col">
@@ -70,7 +82,10 @@ export default function Home() {
         </Link>
       ) : (
         <div className="w-full items-center justify-center flex">
-          <button className="bg-gray-500 p-4 text-white rounded-lg pointer-events-none">
+          <button 
+            className="bg-gray-500 p-4 text-white rounded-lg pointer-events-none"
+            onClick={() => console.log("Please upload both files")}
+            >
             Generate Test Cases
           </button>
         </div>
