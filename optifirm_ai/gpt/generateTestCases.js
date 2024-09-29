@@ -1,9 +1,11 @@
 require('dotenv').config({ path: 'optifirm_ai/.env' });
 import OpenAI from "openai";
-import * as fs from 'fs';
+import { important } from "./important";
+const openai = new OpenAI({
+    apiKey: important 
+});
 
 import { unoptimizedFileContent, specSheet } from "./src/mock_data";
-
 
 // const unoptimizedFileContent = fs.readFile('optifirm_ai/gpt/src/unoptimized_firmware.py', 'utf8', function (err, data) {
 //     if (err) {
@@ -21,15 +23,7 @@ import { unoptimizedFileContent, specSheet } from "./src/mock_data";
 //     console.log(data);
 // })
 
-export async function generateTestCases(setTestCases) {
-    console.log('OPENAI_API_KEY:', process.env.OPENAI_API_KEY);
-
-    if (!process.env.OPENAI_API_KEY) {
-        throw new Error('The OPENAI_API_KEY environment variable is missing or empty.');
-    }
-    
-    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY, dangerouslyAllowBrowser: true });
-    
+export default async function generateTestCases(setTestCases) {
 
     console.log("\x1b[32mGenerating test cases...\x1b[0m");
 
@@ -52,6 +46,7 @@ export async function generateTestCases(setTestCases) {
         simply return the test cases code in perfect formatting. Do not include "python\`\`\`" in front of the code.\n
     `;
 
+    
     const messages = [
         { role: 'assistant', content: 'You are a code generator and a code optimizer, you only output code as your are instructed' },
         { role: 'user', content: promptForTestGeneration },
@@ -78,7 +73,7 @@ export async function generateTestCases(setTestCases) {
         if (event.data.delta?.content[0]?.text.value) {
             // output += event.data.delta?.content[0]?.text.value;
 
-            setTestCases((prevCode: any) => prevCode + event.data.delta?.content[0]?.text.value);
+            setTestCases((prevCode) => prevCode + event.data.delta?.content[0]?.text.value);
             // console.log(output)
         }
 

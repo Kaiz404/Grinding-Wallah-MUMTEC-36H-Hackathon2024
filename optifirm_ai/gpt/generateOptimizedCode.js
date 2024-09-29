@@ -1,33 +1,36 @@
 require('dotenv').config();
 const OpenAI = require("openai");
-const fs = require("fs");
+import { important } from "./important";
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
+    apiKey: important
 });
 
-const unoptimizedFileContent = fs.readFile('gpt/src/unoptimized_firmware.py', 'utf8', function (err, data) {
-    if (err) {
-        console.error(err)
-        return
-    }
-    // console.log(data);
-})
 
-const specSheet = fs.readFile('gpt/src/SpecSheet.txt', 'utf8', function (err, data) {
-    if (err) {
-        console.error(err)
-        return
-    }
-    // console.log(data);
-})
+import { unoptimizedFileContent, specSheet, testCases } from "./src/mock_data";
 
-const testCases = fs.readFile('gpt/src/test_cases.py', 'utf8', function (err, data) {
-    if (err) {
-        console.error(err)
-        return
-    }
-    console.log(data);
-})
+// const unoptimizedFileContent = fs.readFile('gpt/src/unoptimized_firmware.py', 'utf8', function (err, data) {
+//     if (err) {
+//         console.error(err)
+//         return
+//     }
+//     // console.log(data);
+// })
+
+// const specSheet = fs.readFile('gpt/src/SpecSheet.txt', 'utf8', function (err, data) {
+//     if (err) {
+//         console.error(err)
+//         return
+//     }
+//     // console.log(data);
+// })
+
+// const testCases = fs.readFile('gpt/src/test_cases.py', 'utf8', function (err, data) {
+//     if (err) {
+//         console.error(err)
+//         return
+//     }
+//     console.log(data);
+// })
 
 async function generateOptimizedCode(setOptimizedCode) {
     console.log("\x1b[32mOptimizing code...\x1b[0m");
