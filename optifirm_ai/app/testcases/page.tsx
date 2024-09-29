@@ -41,7 +41,7 @@ export default function Home() {
             fontSize: "1.2em"
             }}
             >
-            {currentText}
+            {code.join("\n")}
             </SyntaxHighlighter>
         </div>
       </div>
@@ -60,7 +60,7 @@ export default function Home() {
             fontSize: "1.2em"
             }}
             >
-            {code.join("\n")}
+            {currentText}
             </SyntaxHighlighter>
         </div>
 
