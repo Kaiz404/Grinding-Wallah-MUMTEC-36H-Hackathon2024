@@ -27,10 +27,10 @@ function NavLinks() {
             className={`${
               pathname === link.href
                 ? "h-full rounded-lg p-1 flex gap-4 items-center"
-                : "rounded-lg p-1 flex gap-4 items-center"
+                : "rounded-lg p-1 flex gap-4 items-center opacity-40"
             }`}
           >
-            <p className={`text-lg`}>{link.name}</p>
+            <p className={`text-2xl`}>{link.name}</p>
           </Link>
         );
       })}

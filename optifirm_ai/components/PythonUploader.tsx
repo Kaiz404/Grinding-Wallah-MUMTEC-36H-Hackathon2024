@@ -9,31 +9,25 @@ import { convertFileToUrl } from '@/utils/filesToUrl'
 
 type FileUploaderProps = {
   onFieldChange: (url: string) => void
-  imageUrl: string
+  fileName: string
   setFiles: Dispatch<SetStateAction<File[]>>
   uploadToIpfs: any
 }
 
-const PythonUploader = ({ imageUrl, onFieldChange, setFiles, uploadToIpfs }: FileUploaderProps) => {
-  const [fileName, setFileName] = useState<string | null>(null);
+const PythonUploader = ({ fileName, onFieldChange, setFiles, uploadToIpfs }: FileUploaderProps) => {
+  const [acceptedFileName, setAcceptedFileName] = useState<string | null>(null);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     console.log("Accepted files:", acceptedFiles); // Log accepted files
     setFiles(acceptedFiles);
-
-    if (acceptedFiles.length > 0) {
-      const file = acceptedFiles[0];
-      console.log("File type:", file.type); // Log file type
-      onFieldChange(convertFileToUrl(file));
-      setFileName(file.name);
-    } else {
-      console.error("No files accepted");
-    }
+    onFieldChange(acceptedFiles[0].name);
+    setAcceptedFileName(acceptedFiles[0].name);
+    console.log(acceptedFiles)
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: generateClientDropzoneAccept(['text/x-python']),
+    accept: generateClientDropzoneAccept(["text/x-python", "application/x-python-code"]),
   });
 
   return (
@@ -42,7 +36,7 @@ const PythonUploader = ({ imageUrl, onFieldChange, setFiles, uploadToIpfs }: Fil
       className="flex-center bg-dark-3 flex h-full cursor-pointer flex-col overflow-hidden rounded-xl bg-grey-50 md:min-w-[450px] max-h-1/3">
       <input {...getInputProps()} className="cursor-pointer" />
 
-      {imageUrl ? (
+      {acceptedFileName ? (
         <div className="flex items-center justify-center flex-col py-5 bg-secondary bg-opacity-20 p-10 h-full bg-blue-950">
           <h3 className="mb-6 mt-2 font-semibold text-primary">File Uploaded!</h3>
           {fileName && <p className="text-primary">{fileName}</p>}
