@@ -77,7 +77,7 @@ async function generateOptimizedCode(setOptimizedCode) {
     for await (const event of stream) {
         console.log(event);
         if (event.data.delta?.content[0]?.text.value) {
-            output += event.data.delta?.content[0]?.text.value;
+            // output += event.data.delta?.content[0]?.text.value;
             setOptimizedCode((prevCode) => prevCode + event.data.delta?.content[0]?.text.value);
             // console.log(output)
         }

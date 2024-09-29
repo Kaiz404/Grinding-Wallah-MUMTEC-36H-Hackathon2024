@@ -9,7 +9,7 @@ export default function Home() {
 
   const code = Array.from({ length: 50 }, (_, i) => `print(${i + 1})`);
 
-  const [currentText, setCurrentText] = useState("");
+  const [currentText, setCurrentText] = useState("Generating optimized code.....\n");
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   
