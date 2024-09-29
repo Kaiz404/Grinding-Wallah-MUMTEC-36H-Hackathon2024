@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		backgroundImage: {
+			'blob': "url('../public/assets/background/background.svg')"
+		},
   		colors: {
   			background: 'var(--background)',
   			foreground: 'var(--foreground)'

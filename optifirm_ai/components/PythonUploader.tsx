@@ -36,12 +36,13 @@ const PythonUploader = ({ fileName, onFieldChange, setFiles, uploadToIpfs }: Fil
       <input {...getInputProps()} className="cursor-pointer" />
 
       {acceptedFileName ? (
-        <div className="flex items-center justify-center flex-col py-5 bg-secondary bg-opacity-20 p-10 h-full bg-blue-950">
+        <div className="flex items-center justify-center flex-col py-5 bg-secondary bg-opacity-20 p-10 h-full bg-blue-950 border-[#001f36] border-3
+        ">
           <h3 className="mb-6 mt-2 font-semibold text-primary">File Uploaded!</h3>
           {fileName && <p className="text-primary">{fileName}</p>}
         </div>
       ) : (
-        <div className="flex items-center justify-center flex-col py-5 bg-secondary bg-opacity-20 p-10 h-full bg-blue-950">
+        <div className="flex items-center justify-center flex-col py-5 bg-secondary bg-opacity-20 p-10 h-full bg-blue-950 border-sky-300 border-4">
           <h3 className="mb-6 mt-2 font-semibold text-primary">Upload your Python File</h3>
           <img src="assets\icons\upload.svg" width={77} height={77} alt="file upload" />
           <h3 className="mb-2 mt-2 text-primary text-opacity-50">Drag & Drop</h3>
