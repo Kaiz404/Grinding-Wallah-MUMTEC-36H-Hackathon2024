@@ -27,7 +27,7 @@ const PythonUploader = ({ fileName, onFieldChange, setFiles, uploadToIpfs }: Fil
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: generateClientDropzoneAccept(["text/x-python", "application/x-python-code"]),
+    accept: {},
   });
 
   return (
