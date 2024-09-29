@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import ContextProvider from '@/components/ContextProvider'
-import { headers } from "next/headers";
+import { ThemeProvider } from "next-themes";
+import NavBar from "@/components/Navbar";
+import ContextProvider from "@/components/ContextProvider";
+import { headers } from "next/headers"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,14 +28,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const cookies = headers().get('cookie')
-  
+
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body>
         <ContextProvider cookies={cookies}>
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            disableTransitionOnChange
+          >
+            <div className="h-screen">
+              <div className="w-full h-[10%]flex">
+                <NavBar />
+              </div>
+              <div className="w-full h-[90%]">
+                {children}
+              </div>
+            </div>
+          </ThemeProvider>
         </ContextProvider>
       </body>
     </html>
