@@ -9,18 +9,18 @@ import { convertFileToUrl } from '@/utils/filesToUrl'
 
 type FileUploaderProps = {
   onFieldChange: (url: string) => void
-  imageUrl: string
+  fileName: string
   setFiles: Dispatch<SetStateAction<File[]>>
   uploadToIpfs: any
 }
 
-const FileUploader = ({ imageUrl, onFieldChange, setFiles, uploadToIpfs }: FileUploaderProps) => {
-  const [fileName, setFileName] = useState<string | null>(null)
+const FileUploader = ({ fileName, onFieldChange, setFiles, uploadToIpfs }: FileUploaderProps) => {
+  const [acceptedFileName, setAcceptedFileName] = useState<string | null>(null)
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setFiles(acceptedFiles)
-    onFieldChange(convertFileToUrl(acceptedFiles[0]))
-    setFileName(acceptedFiles[0].name)
+    onFieldChange((acceptedFiles[0].name))
+    setAcceptedFileName(acceptedFiles[0].name)
   }, [])
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -34,7 +34,7 @@ const FileUploader = ({ imageUrl, onFieldChange, setFiles, uploadToIpfs }: FileU
       className="flex-center bg-dark-3 flex h-full cursor-pointer flex-col overflow-hidden rounded-xl bg-grey-50 md:min-w-[450px] max-h-1/3">
       <input {...getInputProps()} className="cursor-pointer" />
 
-      {imageUrl ? (
+      {acceptedFileName ? (
         <div className="flex items-center justify-center flex-col py-5 bg-secondary bg-opacity-20 p-10 h-full bg-blue-950">
           <h3 className="mb-6 mt-2 font-semibold text-primary">File Uploaded!</h3>
           {fileName && <p className="text-primary">{fileName}</p>}

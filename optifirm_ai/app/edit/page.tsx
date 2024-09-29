@@ -14,7 +14,7 @@ export default function Home() {
   const [pyData, setPyData] = useState({
     title: "",
     files: [] as File[],
-    imageUrl: "",
+    fileName: "",
     description: "",
   })
 
@@ -23,7 +23,7 @@ export default function Home() {
   const [formData, setFormData] = useState({
     title: "",
     files: [] as File[],
-    imageUrl: "",
+    fileName: "",
     description: "",
   })
 
@@ -44,25 +44,25 @@ export default function Home() {
     <div className="flex w-full items-center justify-center gap-16 my-24">
       <div>
         <FileUploader
-          imageUrl = {formData.imageUrl}
+          fileName = {formData.fileName}
           setFiles={setFiles}
           uploadToIpfs = {uploadToIpfs}
-          onFieldChange={(url: string) => setFormData(prevState =>({ ...prevState, imageUrl: url}))}
+          onFieldChange={(name: string) => setFormData(prevState =>({ ...prevState, fileName: name}))}
           />
       </div>
 
       <div>
         <PythonUploader
-          imageUrl = {pyData.imageUrl}
+          fileName = {pyData.fileName}
           setFiles={setPyFile}
           uploadToIpfs = {uploadToIpfs}
-          onFieldChange={(url: string) => setPyData(prevState =>({ ...prevState, imageUrl: url}))}
+          onFieldChange={(name: string) => setPyData(prevState =>({ ...prevState, fileName: name}))}
           />
       </div>
     </div>
 
     <div>
-      {formData.imageUrl !== "" && pyData.imageUrl !== "" ? (
+      {formData.fileName !== "" && pyData.fileName !== "" ? (
         <Link className="w-full items-center justify-center flex" href="/testcases">
           <button className="bg-blue-950 p-4 text-white rounded-lg">
             Generate Test Cases
