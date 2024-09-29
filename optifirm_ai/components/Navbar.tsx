@@ -5,6 +5,7 @@ import { links } from "@/constants/nav-links";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import ConnectButton from "./ConnectButton";
+import { useAccount } from "wagmi";
 
 const NavBar = () => {
   return (
@@ -29,18 +30,21 @@ export default NavBar;
 
 function NavLinks() {
   const pathname = usePathname();
+
+  const user = useAccount();
+
   return (
     <>
       {links.map((link) => {
         return (
           <Link
             key={link.name}
-            href={link.href != "/browse" ? link.href : "/"}
+            href={user.address ? link.href : usePathname()}
             className={`${
               pathname === link.href
                 ? "h-full rounded-lg p-1 flex gap-4 items-center"
                 : "rounded-lg p-1 flex gap-4 items-center opacity-40"
-            }`}
+            }  ${user.address ? "cursor-pointer" : "cursor-not-allowed"}`}
           >
             <p className={`text-2xl`}>{link.name}</p>
           </Link>
