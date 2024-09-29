@@ -1,10 +1,28 @@
 "use client"
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { darcula } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
 
   const code = Array.from({ length: 50 }, (_, i) => `print(${i + 1})`);
+
+  const [currentText, setCurrentText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+
+  const delay = 100
+  
+  useEffect(() => {
+    if (currentIndex < code.length) {
+      const timeout = setTimeout(() => {
+        setCurrentText(prevText => prevText + code[currentIndex] + "\n");
+        setCurrentIndex(prevIndex => prevIndex + 1);
+      }, delay);
+  
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, delay, code]);
+
 
   return (
     <div className="h-full w-full flex py-8 items-center justify-center gap-32">
@@ -23,7 +41,7 @@ export default function Home() {
             fontSize: "1.2em"
             }}
             >
-            {code.join("\n")}
+            {currentText}
             </SyntaxHighlighter>
         </div>
       </div>
