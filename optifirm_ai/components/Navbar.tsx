@@ -4,11 +4,23 @@ import Link from "next/link";
 import { links } from "@/constants/nav-links";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import ConnectButton from "./ConnectButton";
 
 const NavBar = () => {
   return (
-    <nav className="h-full w-full p-5 bg-blue-950 drop-shadow-2xl flex items-center justify-center gap-24">
-      <NavLinks />
+    <nav className="h-full w-full p-5 bg-blue-950 drop-shadow-2xl flex items-center justify-center">
+
+      {/* hidden elem to balance navbar */}
+      <div className="opacity-0">
+        <ConnectButton />
+      </div>
+
+      <div className="flex w-full h-full justify-center items-center gap-24">
+        <NavLinks />
+      </div>
+      <div className="w-fit h-full flex">
+        <ConnectButton />
+      </div>
     </nav>
   );
 };
