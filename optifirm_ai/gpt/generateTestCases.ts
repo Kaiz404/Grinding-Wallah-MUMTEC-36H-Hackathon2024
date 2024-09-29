@@ -78,7 +78,7 @@ export async function generateTestCases(setTestCases) {
         if (event.data.delta?.content[0]?.text.value) {
             // output += event.data.delta?.content[0]?.text.value;
 
-            setTestCases((prevCode: any) => prevCode + event.data.delta?.content[0]?.text.value;);
+            setTestCases((prevCode: any) => prevCode + event.data.delta?.content[0]?.text.value);
             // console.log(output)
         }
 
