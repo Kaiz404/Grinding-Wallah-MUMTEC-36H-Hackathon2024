@@ -12,20 +12,6 @@ export default function Home() {
   const [currentText, setCurrentText] = useState("");
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  // const delay = 100
-  
-  // useEffect(() => {
-  //   if (currentIndex < code.length) {
-  //     const timeout = setTimeout(() => {
-        
-  //       setCurrentText(prevText => prevText + code[currentIndex] + "\n");
-  //       setCurrentIndex(prevIndex => prevIndex + 1);
-  //     }, delay);
-  
-  //     return () => clearTimeout(timeout);
-  //   }
-  // }, [currentIndex, delay, code]);
-
   useEffect(() => {
     const fetchTestCases = async () => {
       await generateTestCases(setCurrentText);

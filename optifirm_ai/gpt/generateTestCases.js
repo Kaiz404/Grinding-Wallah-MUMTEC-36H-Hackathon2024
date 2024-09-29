@@ -1,8 +1,9 @@
 require('dotenv').config({ path: 'optifirm_ai/.env' });
 import OpenAI from "openai";
-import { important } from "./important";
+import { key } from "./important";
 const openai = new OpenAI({
-    apiKey: important 
+    apiKey: key,
+    dangerouslyAllowBrowser: true,
 });
 
 import { unoptimizedFileContent, specSheet } from "./src/mock_data";

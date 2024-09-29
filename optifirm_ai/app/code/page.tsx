@@ -3,6 +3,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { darcula } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import { useState, useEffect } from 'react';
 import { testCases, specSheet, unoptimizedFileContent } from '@/gpt/src/mock_data';
+import generateOptimizedCode from '@/gpt/generateOptimizedCode';
 
 export default function Home() {
 
@@ -11,18 +12,13 @@ export default function Home() {
   const [currentText, setCurrentText] = useState("");
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  const delay = 100
   
   useEffect(() => {
-    if (currentIndex < code.length) {
-      const timeout = setTimeout(() => {
-        setCurrentText(prevText => prevText + code[currentIndex] + "\n");
-        setCurrentIndex(prevIndex => prevIndex + 1);
-      }, delay);
-  
-      return () => clearTimeout(timeout);
-    }
-  }, [currentIndex, delay, code]);
+    const fetchTestCases = async () => {
+      await generateOptimizedCode(setCurrentText);
+    };
+    fetchTestCases();
+  }, []);
 
 
   return (

@@ -1,10 +1,10 @@
 require('dotenv').config();
 const OpenAI = require("openai");
-import { important } from "./important";
+import { key } from "./important";
 const openai = new OpenAI({
-    apiKey: important
+    apiKey: key,
+    dangerouslyAllowBrowser: true,
 });
-
 
 import { unoptimizedFileContent, specSheet, testCases } from "./src/mock_data";
 
@@ -78,8 +78,7 @@ async function generateOptimizedCode(setOptimizedCode) {
         console.log(event);
         if (event.data.delta?.content[0]?.text.value) {
             output += event.data.delta?.content[0]?.text.value;
-
-            setOptimizedCode(output);
+            setOptimizedCode((prevCode) => prevCode + event.data.delta?.content[0]?.text.value);
             // console.log(output)
         }
 
@@ -92,4 +91,4 @@ async function generateOptimizedCode(setOptimizedCode) {
     }
 }
 
-generateOptimizedCode('gpt/src/unoptimized_firmware.py');
+export default generateOptimizedCode;
