@@ -9,7 +9,7 @@ import { useAccount } from "wagmi";
 
 const NavBar = () => {
   return (
-    <nav className="h-full w-full p-5 bg-blue-950 drop-shadow-2xl flex items-center justify-center">
+    <nav className="h-full w-full p-5 bg-[#03031B] drop-shadow-2xl flex items-center justify-center">
 
       {/* hidden elem to balance navbar */}
       <div className="opacity-0">

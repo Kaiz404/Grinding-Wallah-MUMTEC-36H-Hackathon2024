@@ -8,10 +8,13 @@ import FileUploader from "@/components/FileUploader";
 import PythonUploader from "@/components/PythonUploader";
 import Link from "next/link";
 
+<<<<<<< HEAD
 import { useReadContract, useSendTransaction, useWriteContract } from 'wagmi'
 import abi from '@/contract/abi.json'
 import dummyAbi from '@/contract/dummy.json';
 
+=======
+>>>>>>> da93a1524d7bade2ba8d921c3f39cdf878f853bc
 export default function Home() {
 
   const [pyFile, setPyFile] = useState<File[]>([]);
@@ -21,7 +24,10 @@ export default function Home() {
     fileName: "",
     description: "",
   })
+<<<<<<< HEAD
   const [authorized, setAuthorized] = useState(false);
+=======
+>>>>>>> da93a1524d7bade2ba8d921c3f39cdf878f853bc
 
   const [isUploading, setIsUploading] = useState(false);
   const [files, setFiles] = useState<File[]>([]);

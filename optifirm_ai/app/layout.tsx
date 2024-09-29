@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body>
+      <body className="bg-blob bg-cover">
         <ContextProvider cookies={cookies}>
           <ThemeProvider
             attribute="class"
